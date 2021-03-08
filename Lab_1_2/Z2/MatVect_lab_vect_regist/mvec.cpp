@@ -27,7 +27,7 @@ void mult_naive(double *a, double *x, double *y, int n)
 		y[i] = reg;
 	}
 }
-//4 zewnetrznej // 16 wewnetrzenej
+
 void matvec_XMM(double* a, double* x, double* y, int n, int lb)
 {
 	//napisz swoj kod
@@ -40,12 +40,12 @@ void matvec_YMM(double* a, double* x, double* y, int n, int lb)
 	//napisz swoj kod
 }
 #endif
-
+//4 zewnetrznej // 16 wewnetrzenej
 #ifdef YES_FMA
 void matvec_FMA(double* a, double* x, double* y, int n, int lb)
 {
 	int i, j;
-	__m256d  ra0, ra1, ra3, rx0, sum0, sum1, sum2, sum3;
+	__m256d  ra0, ra1, ra2,ra3, rx0, sum0, sum1, sum2, sum3;
 	double* ptr_a, * ptr_x;
 	__declspec(align(32)) double res[4];
 
@@ -73,11 +73,11 @@ void matvec_FMA(double* a, double* x, double* y, int n, int lb)
 			_mm_prefetch((const char*)(ptr_a +n+nr), _MM_HINT_NTA);
 			_mm_prefetch((const char*)(ptr_a + nr), _MM_HINT_NTA);
 			_mm_prefetch((const char*)(ptr_a + nr), _MM_HINT_NTA);
-			_mm_prefetch((const char*)(ptr_a + nr), _MM_HINT_NTA);
+			_mm_prefetch((const char*)(ptr_x + nr), _MM_HINT_NTA);
 			ra0 = _mm256_load_pd(ptr_a);
-			ra0 = _mm256_load_pd(ptr_a);
-			ra0 = _mm256_load_pd(ptr_a);
-			ra0 = _mm256_load_pd(ptr_a);
+			ra1 = _mm256_load_pd(ptr_a + n);
+			ra2 = _mm256_load_pd(ptr_a + 2*n);
+			ra3 = _mm256_load_pd(ptr_a + 3*n);
 			rx0 = _mm256_load_pd(ptr_x);
 		}
 	}

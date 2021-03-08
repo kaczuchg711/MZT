@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<VisualStudioProject
+	ProjectType="Intel C++ Project"
+	Version="11.1"
+	Name="W7_6"
+	ProjectGUID="{4DAA7768-70FF-4E0A-ACFD-6EDDCBDC64BF}"
+	VCNestedProjectGUID="{FC176BAD-262B-4E56-908F-71D7576EBB41}"
+	VCNestedProjectFileName="W7_6.vcproj">
+	<Configurations/>
+	<Files/>
+</VisualStudioProject>
